@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express');
 const sequelize = require('./config/connection')
 const path = require('path')
