@@ -22,6 +22,6 @@ app.get('/notes', (req,res) => {
     res.sendFile(path.join(__dirname, 'public', 'note.html'))
 })
 
-sequelize.sync({force: true}).then(app.listen(()=>{console.log('done')}))
+sequelize.sync({force: false}).then(app.listen(()=>{console.log('done')}))
 
 app.listen(3000, () => console.log('Server listening on port 3000'));

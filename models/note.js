@@ -3,6 +3,8 @@ const { Model , DataTypes } = require('sequelize')
 
 class Note extends Model {}
 
+//note model
+
 Note.init({
     id: {
         type: DataTypes.INTEGER,

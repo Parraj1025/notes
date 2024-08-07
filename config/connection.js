@@ -2,7 +2,7 @@ require('dotenv').config
 const { Sequelize, Model } = require('sequelize')
 const DB = process.env.POSTGRESURI
 
-console.log(DB)
+//connection file to establish connection to postgreSQL database
 
 const sequelize = new Sequelize(DB, {
     dialectOptions:{
