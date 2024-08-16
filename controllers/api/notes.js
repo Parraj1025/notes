@@ -1,39 +1,21 @@
 const express = require('express');
 const sequelize = require('sequelize');
 const app = express();
-const path = require('path')
-app.use(express.json())
+const router = express.Router()
+router.use(express.json())
 
 
-//importing note model
 
 const { Note } = require('../../models/note');
 
-//route to get all notes stored in server
-
-app.get('/', async (req, res) => {
-  console.log('all these notes..')
-  try {
-    const title = req.body.title;
-    const text = req.body.text;
-
-    //sequelize findall to grab all items inside Note model
-    const allNotes = await Note.findAll()
-
-    if (!allNotes) {
-      res.status(500).json('its no notes in here')
-    }
-    res.json(allNotes)
-
-  }
-  catch (err) {
-    console.log(err)
-  }
+router.get('/', async (req,res) => {
+  const result = await Note.findAll();
+  res.status(200).json(result)
 })
 
 //route to add a new note. grabs the body information and then runs sequelize command to insert into the table with given data
 
-app.post('/', async (req, res) => {
+router.post('/', async (req, res) => {
 
   const { title, text } = req.body;
   const newNote = await Note.create({ title, text })
@@ -43,7 +25,7 @@ app.post('/', async (req, res) => {
 
 //route to delete note
 
-app.delete(`/:id`, async (req, res) => {
+router.delete(`/:id`, async (req, res) => {
   console.log('deleting')
   const selectedNote = req.params.id
 
@@ -78,4 +60,4 @@ app.delete(`/:id`, async (req, res) => {
 
 //exporting routes
 
-module.exports = app
+module.exports = router

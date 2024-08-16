@@ -21,7 +21,7 @@ Note.init({
 {
     timestamps:false,
     sequelize,
-    modelName: 'NOTES'
+    modelName: 'notes'
 })
 
 module.exports = { Note }

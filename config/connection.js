@@ -1,17 +1,10 @@
-require('dotenv').config
-const { Sequelize, Model } = require('sequelize')
-const DB = process.env.POSTGRESURI
+require("dotenv").config();
+const Sequelize = require('sequelize');
 
-//connection file to establish connection to postgreSQL database
+const dbConnection = new Sequelize('notes', 'postgres', "1560", {
+    host: 'localhost',
+    port: 5432,
+    dialect: "postgres",
+})
 
-const sequelize = new Sequelize(DB, {
-    dialectOptions:{
-        ssl: {
-            require: true,
-            rejectUnauthorized: false
-        }
-    }
-}
-)
-
-module.exports = sequelize
+module.exports = dbConnection
